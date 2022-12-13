@@ -8,7 +8,7 @@ const q = "SELECT * FROM users WHERE username = ?"
 
 db.query(q, [req.body.username], (err, data)=>{
     if(err)return res.status(500).json(err)
-    if(data.length) return res.status(409).json("User already exits!")
+    if(data.length) return res.status(409).json("User already exists!")
 
     //CREATE NEW USER w
     
