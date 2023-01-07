@@ -19,7 +19,7 @@ export const followSelf = (req, res) => {
     jwt.verify(token, "secretkey", (err, userInfo)=>{
     if(err) return res.status(403).json("Token is not valid!")
     
-    const q ="INSERT INTO relationships (`followerUserId`, `followedUserId`) VALUES  (?)";
+    const q ="INSERT INTO relationships (`followerUserId`, `followedUserId`) WHERE followedUserId NOT followedUserId VALUES  (?)";
     
     const values = [
         userInfo.id,
