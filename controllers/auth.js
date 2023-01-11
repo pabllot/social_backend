@@ -16,9 +16,9 @@ db.query(q, [req.body.username], (err, data)=>{
     const salt = bcrypt.genSaltSync(10);
     const hashedPassword = bcrypt.hashSync(req.body.password, salt)
 
-    const q = "INSERT INTO users (`username`, `password`, `name`) VALUE (?)" 
+    const q = "INSERT INTO users (`username`, `password`, `name`, `profilePic`, `coverPic`) VALUE (?)" 
 
-    const values = [req.body.username, hashedPassword, req.body.name]
+    const values = [req.body.username, hashedPassword, req.body.name, req.body.profilePic, req.body.coverPic]
 
     db.query(q, [values], (err, data) => {
         if(err)return res.status(500).json(err)
