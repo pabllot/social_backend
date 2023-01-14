@@ -1,6 +1,10 @@
 import {db } from '../connect.js'
 import jwt from 'jsonwebtoken'
 
+export const ping = (req, res) => {
+    res.status(200).json('pong')
+}
+
 export const getUsers = (req, res) => {
     const q = "SELECT * FROM users" 
     
