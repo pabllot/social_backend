@@ -1,4 +1,5 @@
 import express from "express";
+import * as dotenv from 'dotenv'
 import userRoutes from './routes/user.js'
 import authRoutes from './routes/auth.js'
 import likesRoutes from './routes/likes.js'
@@ -9,6 +10,8 @@ import cookieParser from "cookie-parser";
 import cors from 'cors'
 import multer from 'multer'
 
+dotenv.config()
+
 const app = express();
 
 // MIDDLEWARES
@@ -17,9 +20,7 @@ app.use((req, res, next)=>{
     next()
 })
 app.use(express.json())
-app.use(cors({
-    origin: "http://localhost:3000"
-}))
+app.use(cors())
 app.use(cookieParser())
 
 const storage = multer.diskStorage({
