@@ -4,7 +4,7 @@ dotenv.config()
 
 export const db = mysql.createConnection({
   host: "127.0.0.1",
-  user: "root",
+  user: "Pablo",
   password:  process.env.PASSWORD_MYSQL,
   database: "social"
 })
