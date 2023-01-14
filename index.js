@@ -1,4 +1,5 @@
 import express from "express";
+import * as dotenv from 'dotenv'
 import userRoutes from './routes/user.js'
 import authRoutes from './routes/auth.js'
 import likesRoutes from './routes/likes.js'
@@ -8,6 +9,8 @@ import relationshipRoutes from './routes/relationships.js'
 import cookieParser from "cookie-parser";
 import cors from 'cors'
 import multer from 'multer'
+
+dotenv.config()
 
 const app = express();
 
