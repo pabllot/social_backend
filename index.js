@@ -55,14 +55,7 @@ const storage = multer.diskStorage({
     res.status(200).json(file.filename);
   });
 
-app.use("/api/auth", authRoutes)
 app.use("/api/users", userRoutes)
-app.use("/api/posts", postsRoutes)
-app.use("/api/comments", commentsRoutes)
-app.use("/api/likes", likesRoutes)
-app.use("/api/relationships", relationshipRoutes)
-
-
 
 app.listen(process.env.PORT || PORT, ()=>{
     console.log("backend working")
