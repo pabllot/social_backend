@@ -5,7 +5,7 @@ export const getUsers = (req, res) => {
     const q = "SELECT * FROM users" 
     
     db.getConnection((err, connection) => {
-        if(err) throw err
+        if(err) console.log(err.message)
         console.log('connected as id ' + connection.threadId)
         
         connection.query(q, (err, data) => {
