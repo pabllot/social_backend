@@ -55,8 +55,6 @@ const storage = multer.diskStorage({
 app.use("/api/users", userRoutes)
 
 
-const PORT = 3306
-
 app.listen(process.env.PORT || PORT, ()=>{
     console.log("backend working")
 })
