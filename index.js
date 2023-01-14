@@ -20,9 +20,7 @@ app.use((req, res, next)=>{
     next()
 })
 app.use(express.json())
-app.use(cors({
-    origin: "socialmediapablot.vercel.app"
-}))
+app.use(cors())
 app.use(cookieParser())
 
 const storage = multer.diskStorage({
