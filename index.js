@@ -21,7 +21,7 @@ app.use((req, res, next)=>{
     next()
 })
 app.use(express.json())
-const whitelist = ['http:/localhost3000', 'http://developer2.com']
+const whitelist = ['http:/localhost3000', 'https://socialbackend-production.up.railway.app/']
 const corsOptions = {
   origin: (origin, callback) => {
     if (whitelist.indexOf(origin) !== -1) {
