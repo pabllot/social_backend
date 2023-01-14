@@ -4,8 +4,8 @@ dotenv.config()
 
 const MYSQLUSER = process.env.MYSQLUSER || 'root'
 const MYSQLPASSWORD = process.env.MYSQLPASSWORD || 'password'
-const MYSQLDATABASE = process.env.PORT || 'localhost'
-const MSQLHOST = process.env.MYSQLDATABASE || 'social'
+const MYSQLDATABASE = process.env.MYSQLDATABASE || 'social'
+const MSQLHOST = process.env.MSQLHOST || 'localhost'
 const MYSQLPORT = process.env.MYSQLPORT || 3306
 
 export const db = mysql.createPool({
