@@ -4,8 +4,9 @@ dotenv.config()
 
 export const db  = mysql.createPool({
     connectionLimit : 100,
-    host            : 'localhost',
-    user            : 'root',
-    password        : process.env.PASSWORD_MYSQL,
-    database        : 'social'
+    port:"3306",
+    host: '127.0.0.1',
+    user: 'root',
+    password: process.env.PASSWORD_MYSQL,
+    database: 'social'
   });
