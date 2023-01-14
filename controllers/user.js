@@ -6,7 +6,6 @@ export const getUsers = (req, res) => {
     
     db.getConnection((err, connection) => {
         if(err) console.log(err.message)
-        console.log('connected as id ' + connection.threadId)
         
         connection.query(q, (err, data) => {
             connection.release()
@@ -23,7 +22,6 @@ export const getUser = (req, res)=>{
 
     db.getConnection((err, connection) => {
         if(err) throw err
-        console.log('connected as id ' + connection.threadId)
         connection.query(q, [userId], (err, data)=> {
             connection.release()
         if(err) return res.status(500).json(err)
