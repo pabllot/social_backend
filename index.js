@@ -48,6 +48,6 @@ app.use("/api/comments", commentsRoutes)
 app.use("/api/likes", likesRoutes)
 app.use("/api/relationships", relationshipRoutes)
 
-app.listen(8800, ()=>{
+app.listen(process.env.PORT || PORT, ()=>{
     console.log("backend working")
 })
