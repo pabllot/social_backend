@@ -8,6 +8,5 @@ export const db = mysql.createPool({
   user: "root",
   password:  process.env.PASSWORD_MYSQL,
   database: "social",
-  socketPath : " /tmp/mysql.sock"
 
 })
