@@ -8,7 +8,8 @@ const MYSQLDATABASE = process.env.MYSQLDATABASE || 'social'
 const MSQLHOST = process.env.MSQLHOST || 'localhost'
 const MYSQLPORT = process.env.MYSQLPORT || 3306
 
-export const db = mysql.createConnection({
+export const db = mysql.createPool({
+  connectionLimit: 5,
   host: MSQLHOST,
   user: MYSQLUSER,
   password: MYSQLPASSWORD,
