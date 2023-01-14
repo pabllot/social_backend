@@ -12,6 +12,9 @@ import multer from 'multer'
 
 dotenv.config()
 
+const PORT = process.env.PORT || 8800
+
+
 const app = express();
 
 
@@ -58,6 +61,8 @@ app.use("/api/posts", postsRoutes)
 app.use("/api/comments", commentsRoutes)
 app.use("/api/likes", likesRoutes)
 app.use("/api/relationships", relationshipRoutes)
+
+
 
 app.listen(process.env.PORT || PORT, ()=>{
     console.log("backend working")
