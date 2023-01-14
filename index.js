@@ -14,14 +14,25 @@ dotenv.config()
 
 const app = express();
 
+
 // MIDDLEWARES
 app.use((req, res, next)=>{
     res.header("Access-Control-Allow-Credentials", true)
     next()
 })
 app.use(express.json())
+const whitelist = ['http:/localhost3000', 'http://developer2.com']
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error())
+    }
+  }
+}
 app.use(cors({
-    origin: "http://localhost:3000"
+  origin: corsOptions
 }))
 app.use(cookieParser())
 
