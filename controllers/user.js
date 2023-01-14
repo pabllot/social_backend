@@ -16,17 +16,3 @@ export const getUsers = (req, res) => {
     }
 
 
-export const getUser = (req, res)=>{
-    const userId = req.params.userId;
-    const q = "SELECT * FROM users WHERE id = ?"
-
-    db.getConnection((err, connection) => {
-        if(err) throw err
-        connection.query(q, [userId], (err, data)=> {
-            connection.release()
-        if(err) return res.status(500).json(err)
-        const { password, ...info} = data[0];
-        return res.json(info);
-    } )
-    })
-}
