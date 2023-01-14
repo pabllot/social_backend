@@ -21,7 +21,7 @@ app.use((req, res, next)=>{
 })
 app.use(express.json())
 app.use(cors({
-    origin: "https://socialmediapablot.vercel.app"
+    origin: "socialmediapablot.vercel.app"
 }))
 app.use(cookieParser())
 
