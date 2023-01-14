@@ -14,5 +14,5 @@ export const db = mysql.createPool({
   user: MYSQLUSER,
   password: MYSQLPASSWORD,
   database: MYSQLDATABASE,
-  port: MYSQLPORT
+  port: MYSQLPORT 
 })
