@@ -1,10 +1,11 @@
 import express from 'express';
-import { getUser, getUsers, ping } from '../controllers/user.js';
+import { getUser, updateUser, getUsers, deleteUser } from '../controllers/user.js';
 
 const router = express.Router()
 
 router.get("/", getUsers)
 router.get("/find/:userId", getUser)
-router.get("/ping", ping)
+router.put("/", updateUser)
+router.delete("/:id", deleteUser)
 
 export default router
