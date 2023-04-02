@@ -1,32 +1,20 @@
-import connect from "../db/config/connect.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import {
-  createNewUser_sql,
-  login_sql,
-  userExists_sql,
-} from "../db/sql/auth.js";
+import { newUser_sql, login_sql, isUser_sql } from "../db/sql/auth.js";
 
 export const register = async (req, res) => {
-  const { username } = req.body;
+  const { username, name, profilePic, coverPic } = req.body;
 
   // CHECK IF USER EXISTS
-  const result = await userExists_sql(username);
+  const result = await isUser_sql(username);
   if (result.length) return res.status(409).json("User already exists!");
 
   //CREATE NEW USER
   const salt = bcrypt.genSaltSync(10);
   const hashedPassword = bcrypt.hashSync(req.body.password, salt);
-  const { name, profilePic, coverPic } = req.body;
 
   try {
-    await createNewUser_sql(
-      username,
-      hashedPassword,
-      name,
-      profilePic,
-      coverPic
-    );
+    await newUser_sql(username, hashedPassword, name, profilePic, coverPic);
     res.send("user has been created!!!");
   } catch (error) {
     console.log(error);
