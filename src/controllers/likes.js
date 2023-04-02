@@ -1,4 +1,3 @@
-import connect from "../db/config/connect.js";
 import jwt from "jsonwebtoken";
 import { deleteLike_sql, getLikes_sql, newLike_sql } from "../db/sql/likes.js";
 

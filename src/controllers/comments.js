@@ -1,9 +1,5 @@
 import jwt from "jsonwebtoken";
-import {
-  deleteComment_sql,
-  getComments_sql,
-  newComment_sql,
-} from "../db/sql/comments.js";
+import { deleteComment_sql, getComments_sql, newComment_sql } from "../db/sql/comments.js";
 
 export const getComments = async (req, res) => {
   try {

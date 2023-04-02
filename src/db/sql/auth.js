@@ -7,16 +7,9 @@ export const isUser_sql = async (username) => {
   return result;
 };
 
-export const newUser_sql = async (
-  username,
-  hashedPassword,
-  name,
-  profilePic,
-  coverPic
-) => {
+export const newUser_sql = async (username, hashedPassword, name, profilePic, coverPic) => {
   const conn = await connect();
-  const sql =
-    "INSERT INTO users (`username`, `password`, `name`, `profilePic`, `coverPic`) VALUES (?, ?, ?, ?, ?)";
+  const sql = "INSERT INTO users (`username`, `password`, `name`, `profilePic`, `coverPic`) VALUES (?, ?, ?, ?, ?)";
   const values = [username, hashedPassword, name, profilePic, coverPic];
   const [result] = await conn.query(sql, values);
   return result;
