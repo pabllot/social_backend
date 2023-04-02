@@ -1,36 +1,33 @@
 import connect from "../db/config/connect.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import {
+  createNewUser_sql,
+  login_sql,
+  userExists_sql,
+} from "../db/sql/auth.js";
 
 export const register = async (req, res) => {
-  const conn = await connect();
+  const { username } = req.body;
 
   // CHECK IF USER EXISTS
-  const sql = "SELECT * FROM users WHERE username = ?";
-
-  const [result] = await conn.query(sql, [req.body.username]);
+  const result = await userExists_sql(username);
   if (result.length) return res.status(409).json("User already exists!");
 
   //CREATE NEW USER
-
-  //HASH THE PASSWORD
   const salt = bcrypt.genSaltSync(10);
   const hashedPassword = bcrypt.hashSync(req.body.password, salt);
-
-  const q =
-    "INSERT INTO users (`username`, `password`, `name`, `profilePic`, `coverPic`) VALUE (?)";
-
-  const values = [
-    req.body.username,
-    hashedPassword,
-    req.body.name,
-    req.body.profilePic,
-    req.body.coverPic,
-  ];
+  const { name, profilePic, coverPic } = req.body;
 
   try {
-    await conn.query(q, [values]);
-    res.send("user has been created");
+    await createNewUser_sql(
+      username,
+      hashedPassword,
+      name,
+      profilePic,
+      coverPic
+    );
+    res.send("user has been created!!!");
   } catch (error) {
     console.log(error);
     res.status(400).send(error);
@@ -38,11 +35,7 @@ export const register = async (req, res) => {
 };
 
 export const login = async (req, res) => {
-  const conn = await connect();
-
-  const sql = "SELECT * FROM users WHERE username = ?";
-
-  const [result] = await conn.query(sql, [req.body.username]);
+  const result = await login_sql(req.body.username);
   if (result.length === 0) return res.status(404).json("User not found.");
 
   const checkPassword = bcrypt.compareSync(
