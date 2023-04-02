@@ -8,8 +8,7 @@ const database = {
 };
 
 const connect = async () => {
-  if (global.connection && global.connection.state !== "disconnected")
-    return global.connection;
+  if (global.connection && global.connection.state !== "disconnected") return global.connection;
 
   const connection = mysql.createPool(database);
 

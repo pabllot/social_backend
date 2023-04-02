@@ -1,5 +1,4 @@
 import express from "express";
-import * as dotenv from "dotenv";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 
@@ -7,8 +6,6 @@ import { userRoutes, authRoutes, likesRoutes, commentsRoutes, postsRoutes, relat
 import { AccessControlAllowCredentials } from "./middlewares/Access-Control-Allow-Credentials.js";
 import { corsOptions } from "./middlewares/cors.js";
 import { upload } from "./middlewares/multer.js";
-
-dotenv.config();
 
 const app = express();
 
@@ -29,7 +26,7 @@ app.use("/api/comments", commentsRoutes);
 app.use("/api/likes", likesRoutes);
 app.use("/api/relationships", relationshipRoutes);
 
-const PORT = process.env.PORT || 8800;
+const PORT = 8800;
 
 app.listen(PORT, () => {
   console.log("backend working on port" + PORT);
