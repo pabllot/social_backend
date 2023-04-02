@@ -3,15 +3,10 @@ import * as dotenv from "dotenv";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 
+import { userRoutes, authRoutes, likesRoutes, commentsRoutes, postsRoutes, relationshipRoutes } from "./routes/exports.js";
 import { AccessControlAllowCredentials } from "./middlewares/Access-Control-Allow-Credentials.js";
 import { corsOptions } from "./middlewares/cors.js";
 import { upload } from "./middlewares/multer.js";
-import userRoutes from "./routes/user.js";
-import authRoutes from "./routes/auth.js";
-import likesRoutes from "./routes/likes.js";
-import commentsRoutes from "./routes/comments.js";
-import postsRoutes from "./routes/posts.js";
-import relationshipRoutes from "./routes/relationships.js";
 
 dotenv.config();
 
