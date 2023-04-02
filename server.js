@@ -1,52 +1,26 @@
 import express from "express";
 import * as dotenv from "dotenv";
+import cors from "cors";
+import cookieParser from "cookie-parser";
+
+import { AccessControlAllowCredentials } from "./src/middlewares/Access-Control-Allow-Credentials.js";
+import { corsOptions } from "./src/middlewares/cors.js";
+import { upload } from "./src/middlewares/multer.js";
 import userRoutes from "./src/routes/user.js";
 import authRoutes from "./src/routes/auth.js";
 import likesRoutes from "./src/routes/likes.js";
 import commentsRoutes from "./src/routes/comments.js";
 import postsRoutes from "./src/routes/posts.js";
 import relationshipRoutes from "./src/routes/relationships.js";
-import cookieParser from "cookie-parser";
-import cors from "cors";
-import multer from "multer";
 
 dotenv.config();
 
 const app = express();
 
-// MIDDLEWARES
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Credentials", true);
-  next();
-});
+app.use(AccessControlAllowCredentials);
 app.use(express.json());
-const whitelist = ["http:/localhost:3000", "https://socialmediapablot.vercel.app/"];
-const corsOptions = {
-  origin: (origin, callback) => {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error());
-    }
-  },
-};
-app.use(
-  cors({
-    origin: corsOptions,
-  })
-);
+app.use(cors({ origin: corsOptions }));
 app.use(cookieParser());
-
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "../client/public/upload");
-  },
-  filename: function (req, file, cb) {
-    cb(null, Date.now() + file.originalname);
-  },
-});
-
-const upload = multer({ storage: storage });
 
 app.post("/api/upload", upload.single("file"), (req, res) => {
   const file = req.file;
